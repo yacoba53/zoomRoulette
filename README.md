@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MERN-boilerplate
 
 This is a boilerplate project using the following technologies:
@@ -31,3 +32,6 @@ Development (Webpack dev server) mode:
 ```shell
 npm run start:dev
 ```
+=======
+# zoomRoulette
+>>>>>>> 1d60df7fab3bb4cf139102f47aaec7eeeb1e969e
