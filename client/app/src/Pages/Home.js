@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo, useState} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import CasinoIcon from '@material-ui/icons/Casino';
@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
+import axios from "axios";
 
 export const Copyright = () => {
   return (
@@ -28,9 +29,6 @@ export const Copyright = () => {
 }
 
 const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(8, 0, 6),
@@ -38,34 +36,25 @@ const useStyles = makeStyles((theme) => ({
   heroButtons: {
     marginTop: theme.spacing(4),
   },
-  cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
-  },
-  card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  cardMedia: {
-    paddingTop: '56.25%', // 16:9
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
 }));
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 export default function Home() {
   const classes = useStyles();
-
+  const [selectedUrl, setSelectedUrl] = React.useState(null)
+  const selectUrl = useMemo( () => {
+          var urlOptions = axios({
+             method: "GET",
+             url: "/api/records"
+           }).then((results)=>{setSelectedUrl(results.data[Math.floor(Math.random()*results.data.length)])})
+             .catch(error => {
+               alert("there was ana error accessing the DB");
+             });
+  },{})
   return (
     <React.Fragment>
+    {console.log(selectedUrl)}
       <main>
         {/* Hero unit */}
         <div className={classes.heroContent}>
@@ -73,19 +62,23 @@ export default function Home() {
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
               Take A Chance
             </Typography>
-            <Typography variant="h5" align="center" color="textSecondary" paragraph>
-              Click here to join a random Zoom chat. To add your zoom,
-              please add your url in the new tab in the nav bar above.
+            <Typography variant="h5" align="center" color="textSecondary" style = {{ marginBottom: 5}} paragraph>
+              Click here to join a random Zoom chat.
             </Typography>
-            <div className={classes.heroButtons}>
+            <div className={classes.heroButtons}  style = {{ marginTop: 0, marginBottom: 10}}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
+                <Link href={selectedUrl?.url} target="_blank" style = {{textDecoration: 'none', color: 'white'}}>
                   <Button variant="contained" color="primary">
                     Zoom
                   </Button>
+                  </Link>
                 </Grid>
               </Grid>
             </div>
+            <Typography variant="h5" align="center" color="textSecondary" paragraph>
+              To add your zoom url,<br></br> please click the + nav bar above.
+            </Typography>
           </Container>
         </div>
       </main>

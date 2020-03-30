@@ -6,37 +6,24 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import IconButton from '@material-ui/core/IconButton';
+import AddCircle from '@material-ui/icons/AddCircle';
 
 
 const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
   },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
+  logoName: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    }
   },
-  heroButtons: {
-    marginTop: theme.spacing(4),
-  },
-  cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
-  },
-  card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  cardMedia: {
-    paddingTop: '56.25%', // 16:9
-  },
-  cardContent: {
+  root: {
     flexGrow: 1,
   },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
+  title: {
+    flexGrow: 1,
   },
 }));
 
@@ -45,14 +32,25 @@ export default function Header() {
 return(
   <React.Fragment>
     <CssBaseline />
+    <div className={classes.root}>
     <AppBar position="relative">
       <Toolbar>
-        <CasinoIcon className={classes.icon} />
-        <Typography variant="h6" color="inherit" noWrap>
+      <Link to={'/'} style = {{textDecoration: 'none', color: 'white'}}>
+        <CasinoIcon edge="start" className={classes.icon} />
+      </Link>
+      <Link to={'/'} className = {classes.logoName} style = {{textDecoration: 'none', color: 'white'}} >
+        <Typography variant="h5" color="inherit" noWrap className={classes.title}>
           Zoom Roulette
         </Typography>
+      </Link>
+      <Link to={'/add'} className = {classes.logoName} style = {{textDecoration: 'none', color: 'white', float: 'right'}} >
+      <IconButton aria-label="add a new url" color="inherit" style = {{float: 'right'}}>
+             <AddCircle />
+         </IconButton>
+      </Link>
       </Toolbar>
     </AppBar>
+    </div>
   </React.Fragment>
 )
 };
