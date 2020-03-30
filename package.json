@@ -1,11 +1,11 @@
 {
-  "name": "MERN-boilerplate",
+  "name": "zoom Roulette",
   "version": "1.0.0",
-  "description": "MERN stack project boilerplate",
-  "author": "Eugene Cheung",
+  "description": "basic random choice program",
+  "author": "Jacob Abbott",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arkon/MERN-boilerplate.git"
+    "url": "git+https://github.com/yacoba53/zoomRoulette.git"
   },
   "license": "MIT",
   "private": true,
@@ -20,8 +20,6 @@
     "@babel/core": "^7.0.0-beta.42",
     "@babel/preset-env": "^7.0.0-beta.42",
     "@babel/preset-react": "^7.0.0-beta.42",
-    "@material-ui/core": "^4.9.8",
-    "@material-ui/icons": "^4.9.1",
     "autoprefixer": "^8.2.0",
     "babel-loader": "^8.0.0-beta.2",
     "connect-history-api-fallback": "^1.5.0",
@@ -30,6 +28,7 @@
     "express": "^4.16.3",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-webpack-plugin": "^3.1.0",
+    "moment": "^2.24.0",
     "mongoose": "^5.0.11",
     "node-sass": "^4.7.2",
     "nodemon": "^1.17.2",
@@ -41,7 +40,7 @@
     "react-router-dom": "^4.2.2",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",
-    "webpack": "^4.42.1",
+    "webpack": "^4.2.0",
     "webpack-cli": "^2.0.13",
     "webpack-dev-middleware": "^3.0.1",
     "webpack-hot-middleware": "^2.21.2",
