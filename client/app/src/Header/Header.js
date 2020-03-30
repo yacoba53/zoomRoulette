@@ -25,6 +25,18 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  sectionDesktop: {
+   display: 'none',
+   [theme.breakpoints.up('md')]: {
+     display: 'flex',
+   },
+ },
+ sectionMobile: {
+   display: 'flex',
+   [theme.breakpoints.up('md')]: {
+     display: 'none',
+   },
+ },
 }));
 
 export default function Header() {
@@ -33,19 +45,32 @@ return(
   <React.Fragment>
     <CssBaseline />
     <div className={classes.root}>
-    <AppBar position="relative">
+    <AppBar position="static">
       <Toolbar>
-      <Link to={'/'} className = {classes.title} style = {{textDecoration: 'none', color: 'white', justify: 'right'}} >
-        <Typography variant="h5" color="inherit">
-          Zoom Roulette
-        </Typography>
-      </Link>
-
-      <Link to={'/add'} className = {classes.logoName} style = {{textDecoration: 'none', color: 'white'}} >
+      <Link to={'/'} className = {classes.logoName} style = {{textDecoration: 'none', color: 'white'}} >
          <IconButton aria-label="add a new url" color="inherit" >
-             <AddCircle />
+             <CasinoIcon />
          </IconButton>
       </Link>
+        <Link to={'/'} className = {classes.title} style = {{textDecoration: 'none', color: 'white', justify: 'right'}} >
+          <Typography variant="h5" color="inherit">
+            Zoom Roulette
+          </Typography>
+        </Link>
+        <div className={classes.sectionDesktop}>
+        <Link to={'/add'} className = {classes.logoName} style = {{textDecoration: 'none', color: 'white'}} >
+           <IconButton aria-label="add a new url" color="inherit" >
+               <AddCircle />
+           </IconButton>
+        </Link>
+        </div>
+        <div className={classes.sectionMobile}>
+        <Link to={'/add'} className = {classes.logoName} style = {{textDecoration: 'none', color: 'white'}} >
+           <IconButton aria-label="add a new url" color="inherit" >
+               <AddCircle />
+           </IconButton>
+        </Link>
+        </div>
       </Toolbar>
     </AppBar>
     </div>
