@@ -51,11 +51,8 @@ export default function Home() {
            url: "/api/inactive",
            data: selectedUrl
          })
-           .then(response => {
-             //sucess
-           })
            .catch(error => {
-            alert('there was an error marking it inactive')
+            console.log('there was an error marking it inactive')
            });
         window.location.reload();
      };
