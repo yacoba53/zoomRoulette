@@ -61,20 +61,11 @@ const useStyles = makeStyles((theme) => ({
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-export default function Album() {
+export default function Home() {
   const classes = useStyles();
 
   return (
     <React.Fragment>
-      <CssBaseline />
-      <AppBar position="relative">
-        <Toolbar>
-          <CasinoIcon className={classes.icon} />
-          <Typography variant="h6" color="inherit" noWrap>
-            Zoom Roulette
-          </Typography>
-        </Toolbar>
-      </AppBar>
       <main>
         {/* Hero unit */}
         <div className={classes.heroContent}>
@@ -98,11 +89,6 @@ export default function Album() {
           </Container>
         </div>
       </main>
-      {/* Footer */}
-      <footer className={classes.footer}>
-        <Copyright />
-      </footer>
-      {/* End footer */}
     </React.Fragment>
   );
 }
