@@ -47,7 +47,7 @@ return(
     <div className={classes.root}>
     <AppBar position="static">
       <Toolbar>
-      <Link to={'/'} className = {classes.logoName} style = {{textDecoration: 'none', color: 'white'}} >
+      <Link to={'/'} style = {{textDecoration: 'none', color: 'white'}} >
          <IconButton aria-label="add a new url" color="inherit" >
              <CasinoIcon />
          </IconButton>
@@ -58,14 +58,14 @@ return(
           </Typography>
         </Link>
         <div className={classes.sectionDesktop}>
-        <Link to={'/add'} className = {classes.logoName} style = {{textDecoration: 'none', color: 'white'}} >
+        <Link to={'/add'} style = {{textDecoration: 'none', color: 'white'}} >
            <IconButton aria-label="add a new url" color="inherit" >
                <AddCircle />
            </IconButton>
         </Link>
         </div>
         <div className={classes.sectionMobile}>
-        <Link to={'/add'} className = {classes.logoName} style = {{textDecoration: 'none', color: 'white'}} >
+        <Link to={'/add'} style = {{textDecoration: 'none', color: 'white'}} >
            <IconButton aria-label="add a new url" color="inherit" >
                <AddCircle />
            </IconButton>
