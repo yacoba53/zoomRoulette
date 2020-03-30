@@ -131,7 +131,7 @@ export default function Home() {
             </Typography>
           }
             <Typography variant="h5" align="center" color="textSecondary" paragraph>
-              To add your zoom url,<br></br> please click the + nav bar above.
+              To add your zoom url,<br></br> please click the + in the nav bar above.
             </Typography>
           </Container>
         </div>
