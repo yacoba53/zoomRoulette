@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   root: {
-    flexGrow: 1,
+    display: 'flex',
   },
   title: {
     flexGrow: 1,
@@ -35,16 +35,14 @@ return(
     <div className={classes.root}>
     <AppBar position="relative">
       <Toolbar>
-      <Link to={'/'} style = {{textDecoration: 'none', color: 'white'}}>
-        <CasinoIcon edge="start" className={classes.icon} />
-      </Link>
-      <Link to={'/'} className = {classes.logoName} style = {{textDecoration: 'none', color: 'white'}} >
-        <Typography variant="h4" color="inherit" noWrap className={classes.title}>
+      <Link to={'/'} className = {classes.title} style = {{textDecoration: 'none', color: 'white', justify: 'right'}} >
+        <Typography variant="h5" color="inherit">
           Zoom Roulette
         </Typography>
       </Link>
-      <Link to={'/add'} className = {classes.logoName} style = {{textDecoration: 'none', color: 'white', float: 'right'}} >
-      <IconButton aria-label="add a new url" color="inherit" style = {{float: 'right'}}>
+
+      <Link to={'/add'} className = {classes.logoName} style = {{textDecoration: 'none', color: 'white'}} >
+         <IconButton aria-label="add a new url" color="inherit" >
              <AddCircle />
          </IconButton>
       </Link>
