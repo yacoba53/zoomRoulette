@@ -39,7 +39,7 @@ return(
         <CasinoIcon edge="start" className={classes.icon} />
       </Link>
       <Link to={'/'} className = {classes.logoName} style = {{textDecoration: 'none', color: 'white'}} >
-        <Typography variant="h5" color="inherit" noWrap className={classes.title}>
+        <Typography variant="h4" color="inherit" noWrap className={classes.title}>
           Zoom Roulette
         </Typography>
       </Link>
