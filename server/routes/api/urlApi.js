@@ -4,7 +4,7 @@ var moment = require('moment');
 module.exports = (app) => {
   app.get('/api/records', (req, res, next) => {
     var older_than = moment().subtract(1, 'hours').toDate();
-    Schemas.find({ timestamp: { $gte: older_than } })
+    Schemas.find({ timestamp: { $gte: older_than } , active: true})
       .exec()
       .then((records) => res.json(records))
       .catch((err) => next(err));
@@ -16,6 +16,15 @@ module.exports = (app) => {
     record.save()
       .then(() => res.json(record))
       .catch((err) => next(err));
+  });
+
+  app.put('/api/inactive', function (req, res, next) {
+    const record = new Schemas({url: req.body.url, active: false});
+
+    Schemas.updateMany({ url: req.body.url },{active: false})
+        .exec()
+        .then((counter) => res.json())
+        .catch((err) => next(err));
   });
 
   app.delete('/api/records', function (req, res, next) {

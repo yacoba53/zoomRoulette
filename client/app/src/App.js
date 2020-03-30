@@ -8,6 +8,9 @@ import Layout from './App/Layout';
 import NotFound from './App/NotFound';
 import Home from './Pages/Home';
 import AddUrl from './Pages/AddUrl';
+import Privacy from './Pages/Privacy';
+import Terms from './Pages/Terms';
+import Support from './Pages/Support';
 import '../styles/styles.scss';
 
 export default function App(){
@@ -18,6 +21,9 @@ export default function App(){
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route path="/add" component={AddUrl}/>
+          <Route path="/terms" component={Terms}/>
+          <Route path="/support" component={Support}/>
+          <Route path="/privacy" component={Privacy}/>
           <Route component={NotFound}/>
         </Switch>
       </Layout>

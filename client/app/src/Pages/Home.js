@@ -38,12 +38,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 export default function Home() {
   const classes = useStyles();
-  const [selectedUrl, setSelectedUrl] = React.useState(null)
-  const [urlsFound, setUrlsFound] = React.useState(false)
+  const [selectedUrl, setSelectedUrl] = useState(null)
+  const [urlsFound, setUrlsFound] = useState(false)
+  const [clicked, setClicked] = useState(false)
+
+  const handleOnSubmit = () => {
+    console.log(selectedUrl)
+         axios({
+           method: "PUT",
+           url: "/api/inactive",
+           data: selectedUrl
+         })
+           .then(response => {
+             //sucess
+           })
+           .catch(error => {
+            alert('there was an error marking it inactive')
+           });
+        window.location.reload();
+     };
 
   const selectUrl = useMemo( () => {
           var urlOptions = axios({
@@ -60,7 +75,8 @@ export default function Home() {
            }).catch(error => {
                alert("there was ana error accessing the DB");
             });
-  },{})
+  },[]);
+
   return (
     <React.Fragment>
     {console.log(selectedUrl)}
@@ -68,30 +84,52 @@ export default function Home() {
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
+          {!clicked &&
+            <div>
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
               Take A Chance
             </Typography>
             <Typography variant="h5" align="center" color="textSecondary" style = {{ marginBottom: 5}} paragraph>
               Click here to join a random Zoom chat.
             </Typography>
+            </div>
+          }
             <div className={classes.heroButtons}  style = {{ marginTop: 0, marginBottom: 10}}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
-                {urlsFound &&
+                {urlsFound && !clicked &&
                 <Link href={selectedUrl?.url} target="_blank" style = {{textDecoration: 'none', color: 'white'}}>
-                  <Button variant="contained" color="primary">
+                  <Button variant="contained" color="primary" onClick={()=>setClicked(true)}>
                     Zoom
                   </Button>
                 </Link>
                 }
-                {!urlsFound &&
+                {!urlsFound && !clicked &&
                 <Typography variant="h5" align="center"  style = {{ marginBottom: 5}} paragraph>
-                  No Zoom Urls Available
+                  No Zoom Urls Available, Consider Adding Yours!
                 </Typography>
                 }
                 </Grid>
               </Grid>
             </div>
+            <div className={classes.heroButtons}  style = {{ marginTop: 0, marginBottom: 10}}>
+              <Grid container spacing={2} justify="center">
+                <Grid item>
+                {clicked &&
+                  <Button variant="contained" color="primary" onClick={handleOnSubmit}>
+                    inactive
+                  </Button>
+                }
+                </Grid>
+              </Grid>
+            </div>
+            {clicked &&
+            <Typography variant="h5" align="center"  style = {{ marginBottom: 5}} paragraph>
+              we rely on user input to continue running, if this link
+              is no longer active please click here to report and reload.<br></br>
+              If you just want a new link please just refresh the page.
+            </Typography>
+          }
             <Typography variant="h5" align="center" color="textSecondary" paragraph>
               To add your zoom url,<br></br> please click the + nav bar above.
             </Typography>
