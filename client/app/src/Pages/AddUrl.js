@@ -110,7 +110,7 @@ export default function AddUrl () {
             </div>
             <Typography variant="h5" align="center" color="textSecondary" paragraph>
              Enter your zoom url here to allow anyone from this site to access it.
-             It will only be entered into circulation for 2 hours.
+             It will only be entered into circulation for 1 hour.
             </Typography>
           </Container>
         </div>

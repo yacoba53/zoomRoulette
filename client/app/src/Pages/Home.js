@@ -43,14 +43,23 @@ const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 export default function Home() {
   const classes = useStyles();
   const [selectedUrl, setSelectedUrl] = React.useState(null)
+  const [urlsFound, setUrlsFound] = React.useState(false)
+
   const selectUrl = useMemo( () => {
           var urlOptions = axios({
              method: "GET",
              url: "/api/records"
-           }).then((results)=>{setSelectedUrl(results.data[Math.floor(Math.random()*results.data.length)])})
-             .catch(error => {
+           }).then((results)=>{
+             console.log("res:", results.data.length)
+             if(results.data.length>0){
+               setSelectedUrl(results.data[Math.floor(Math.random()*results.data.length)])
+               setUrlsFound(true)
+             }else{
+               setUrlsFound(false)
+             }
+           }).catch(error => {
                alert("there was ana error accessing the DB");
-             });
+            });
   },{})
   return (
     <React.Fragment>
@@ -68,11 +77,18 @@ export default function Home() {
             <div className={classes.heroButtons}  style = {{ marginTop: 0, marginBottom: 10}}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
+                {urlsFound &&
                 <Link href={selectedUrl?.url} target="_blank" style = {{textDecoration: 'none', color: 'white'}}>
                   <Button variant="contained" color="primary">
                     Zoom
                   </Button>
-                  </Link>
+                </Link>
+                }
+                {!urlsFound &&
+                <Typography variant="h5" align="center"  style = {{ marginBottom: 5}} paragraph>
+                  No Zoom Urls Available
+                </Typography>
+                }
                 </Grid>
               </Grid>
             </div>

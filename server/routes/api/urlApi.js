@@ -3,7 +3,7 @@ var moment = require('moment');
 
 module.exports = (app) => {
   app.get('/api/records', (req, res, next) => {
-    var older_than = moment().subtract(2, 'hours').toDate();
+    var older_than = moment().subtract(1, 'hours').toDate();
     Schemas.find({ timestamp: { $gte: older_than } })
       .exec()
       .then((records) => res.json(records))
